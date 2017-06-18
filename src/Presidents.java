@@ -47,11 +47,11 @@ public class Presidents{
 		presidents[19][1] = "1881-1881";
 		presidents[20][0] = "Chester A. Arthur";
 		presidents[20][1] = "1881 - 1885";
-		presidents[21][0] = "Grover Cleveland";
+		presidents[21][0] = "Grover Cleveland(1st term)";
 		presidents[21][1] = "1885 - 1889";
 		presidents[22][0] = "Benjamin Harrison";
 		presidents[22][1] = "1885 - 1889";
-		presidents[23][0] = "Grover Cleveland";
+		presidents[23][0] = "Grover Cleveland(2nd term)";
 		presidents[23][1] = "1893 - 1897";
 		presidents[24][0] = "William Mckinley";
 		presidents[24][1] = "1897 - 1901";
@@ -100,7 +100,7 @@ public class Presidents{
 			}
 		}
 		else{
-			System.out.println("Incorrect, " + presidents[randomint][0] + " served as president from" + presidents[randomint][1]);
+			System.out.println("Incorrect, " + presidents[randomint][0] + " served as president from " + presidents[randomint][1]);
 			System.out.println("Press enter to continue, or enter \"quit\" to exit");
 			if(console.nextLine().equalsIgnoreCase("quit")){
 				System.out.println("Thanks for playing!");
