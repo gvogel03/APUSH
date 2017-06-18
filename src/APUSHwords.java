@@ -108,13 +108,12 @@ public class APUSHwords {
 				if(yn2.equals("yes") || yn2.equals("y")){
 					System.out.println("Guess Again:");
 					String guess2 = console.nextLine();
-					if(guess2.equals(terms[rand][1]))
+					if(guess2.equals(terms[rand][1])){
 						System.out.println("Correct! Would you like to learn more information?");
 						String yn = console.nextLine();
-						if(yn == "yes" || yn == "y"){
+						if(yn.equals("yes") || yn.equals("y")){
 							System.out.println(terms[rand][2]);
 						}
-						else{
 							System.out.println("Would you like another question?");
 							String cont1 = console.nextLine();
 							if(cont1.equals("yes") || cont1.equals("y")){
@@ -123,10 +122,23 @@ public class APUSHwords {
 							else{
 								break;
 							}
-						}
 					}
 					else{
-						System.out.println("Incorrect, the correct answer is: " + terms[rand][1]);			
+						System.out.println("Incorrect, the correct answer is: " + terms[rand][1]);
+						System.out.println("Would you like to learn more information?");
+						String yn = console.nextLine();
+						if(yn.equals("yes") || yn.equals("yes")){
+							System.out.println(terms[rand][2]);
+						}
+							System.out.println("Would you like another question?");
+							String cont1 = console.nextLine();
+							if(cont1.equals("yes") || cont1.equals("y")){
+								continue;
+							}
+							else{
+								break;
+							}
+					}
 					}
 				}
 			}
