@@ -2,9 +2,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 public class APUSHwords {
-	private static int lastguess;
+	private static int lastguess = -1;
+	static int correctscore = 0;
+	static int incorrectscore = 0;
 	public static void main(String[]args){
+		JFrame frame = new JFrame();
 		Scanner console = new Scanner(System.in);
 		String[][] terms = new String[24][3];
 		terms[1][0] = "When was Jamestown Founded?";
@@ -81,12 +86,16 @@ public class APUSHwords {
 		console.nextLine();
 		for(int i = 0; i < 23; i ++){
 			int rand = (int) (Math.random() * 23) + 1;
+			while(rand == lastguess){
+				rand = (int) (Math.random() * 23) + 1;;
+			}
 			System.out.println(terms[rand][0]);
 			String input = console.nextLine();
 			lastguess = rand;
 			if(input.equals(terms[rand][1])){
 				System.out.println("Correct! Would you like to learn more information?");
 				String yn = console.nextLine();
+				correctscore++;
 				if(yn.equals("yes") || yn.equals("y")){
 					System.out.println(terms[rand][2]);
 					System.out.println("Do you want another question?");
@@ -104,13 +113,31 @@ public class APUSHwords {
 			}
 			else{ 
 				System.out.println("Wrong, would you like to try again?");
+				incorrectscore++;
 				String yn2 = console.nextLine();
+				if(yn2.equalsIgnoreCase("no")){
+					System.out.println("The correct answer is: " + terms[rand][1]);
+					System.out.println("Would you like to learn more information?");
+					String yn = console.nextLine();
+					if(yn.equals("yes") || yn.equals("yes")){
+						System.out.println(terms[rand][2]);
+					}
+						System.out.println("Would you like another question?");
+						String cont1 = console.nextLine();
+						if(cont1.equals("yes") || cont1.equals("y")){
+							continue;
+						}
+						else{
+							break;
+						}
+				}
 				if(yn2.equals("yes") || yn2.equals("y")){
 					System.out.println("Guess Again:");
 					String guess2 = console.nextLine();
 					if(guess2.equals(terms[rand][1])){
 						System.out.println("Correct! Would you like to learn more information?");
 						String yn = console.nextLine();
+						correctscore++;
 						if(yn.equals("yes") || yn.equals("y")){
 							System.out.println(terms[rand][2]);
 						}
@@ -125,12 +152,13 @@ public class APUSHwords {
 					}
 					else{
 						System.out.println("Incorrect, the correct answer is: " + terms[rand][1]);
+						incorrectscore++;
 						System.out.println("Would you like to learn more information?");
 						String yn = console.nextLine();
 						if(yn.equals("yes") || yn.equals("yes")){
 							System.out.println(terms[rand][2]);
 						}
-							System.out.println("Would you like another question?");
+							System.out.println("Would you like another question? Type quit if you are done, and enter to have another question");
 							String cont1 = console.nextLine();
 							if(cont1.equals("yes") || cont1.equals("y")){
 								continue;
@@ -143,6 +171,7 @@ public class APUSHwords {
 				}
 			}
 		System.out.println("Thanks for Playing!");
+		System.out.println("You got " + ((double)correctscore/(correctscore + incorrectscore)) * 100 + "% of the questions right");
 	}
 }
 
